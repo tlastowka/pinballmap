@@ -33,7 +33,7 @@ class PinballmapMachine():
 
         self._doc = data
         for k in ['created_at', 'updated_at']:
-            data[k] = parser.parse(data[k])
+            data[k] = dparser.parse(data[k])
 
         self.__dict__.update(data)
 
