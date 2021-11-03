@@ -30,7 +30,6 @@ class PinballMap():
 
 class PinballmapMachine():
     def __init__(self, data):
-        from dateutil import parser
 
         self._doc = data
         for k in ['created_at', 'updated_at']:
