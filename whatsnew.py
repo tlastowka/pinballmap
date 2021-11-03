@@ -29,6 +29,7 @@ class PinballMap():
 
 
 class PinballmapMachine():
+
     def __init__(self, data):
 
         self._doc = data
@@ -37,7 +38,8 @@ class PinballmapMachine():
 
         self.__dict__.update(data)
 
-        s = ['ipdb_id', 'ipdb_link', 'machine_group_id', 'manufacturer', 'name', 'opdb_id', 'year']
+        s = ['ipdb_id', 'ipdb_link', 'machine_group_id',
+             'manufacturer', 'name', 'opdb_id', 'year']
 
         for k in s:
 
@@ -56,7 +58,8 @@ class PinballmapLocation():
         self._doc = data
 
         self.__dict__.update(data)
-        self.machines = [PinballmapMachine(m) for m in self.location_machine_xrefs]
+        self.machines = [PinballmapMachine(m)
+                         for m in self.location_machine_xrefs]
 
     @property
     def map_link(self):
@@ -75,16 +78,15 @@ def dump_region_locations_by_last_updated(region):
     for l in sorted(locations, key=lambda x: x.updated_at):
         print(l.num_machines, l.city, l, l.updated_at, l.map_link, l.website)
 
+
 def list_all_regions():
     p = PinballMap()
-    for region in sorted(p.fetch_all_regions()['regions'], key = lambda x: x['name']):
+    for region in sorted(p.fetch_all_regions()['regions'], key=lambda x: x['name']):
+        print(region['name'], region['id'])
 
-        print(region['name'],region['id'])
 
 if __name__ == '__main__':
     dump_region_locations_by_last_updated(region='philadelphia')
-
-
 
 """
 
